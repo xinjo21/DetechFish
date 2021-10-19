@@ -1,0 +1,72 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
+  "dependencies": {
+    "@mui/material": "^5.0.4",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "concurrently": "^6.3.0",
+    "electron-is-dev": "^2.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start-react": "react-scripts start",
+    "build-react": "react-scripts build",
+    "start-electron": "nodemon --watch ./public/* --exec \"electron . \" ",
+    "dev": "concurrently \"npm run start-react\" \"wait-on http://localhost:3000 && npm run start-electron\" ",
+    "postinstall": "electron-builder install-app-deps",
+    "pack-app": "npm build-react && electron-builder --dir",
+    "pack-build": "electron-builder --dir",
+    "build": "npm build-react && electron-builder",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^15.2.0",
+    "electron-builder": "^22.13.1",
+    "nodemon": "^2.0.13",
+    "wait-on": "^6.0.0"
+  },
+  "build": {
+    "appId": "template",
+    "productName": "FishRadar",
+    "copyright": "Copyrighted by Owners and ICS",
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "icon": "./build/images/appicon.ico",
+      "target": [
+        "7z"
+      ]
+    }
+  }
+}
