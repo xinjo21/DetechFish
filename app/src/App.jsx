@@ -1,23 +1,17 @@
 /* import './App.css'; */
-import {
-  Box,
-  Center,
-  Flex,
-  VStack,
-  Grid,
-  GridItem,
-  Button,
-  Heading,
-  Text,
-} from '@chakra-ui/react'
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+
+import Home from './pages/Home'
+import Data from './pages/Data'
+import Scan from './pages/Scan'
+import Sync from './pages/Sync'
+import Map from './pages/Map'
+import err404 from './pages/err404'
 
 
-function getTime() {
+function getDate() {
   const date = new Date()
-  var hr = date.getHours()
-  var mn = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
-  var sec = date.getSeconds()
 
   var currentDay = date.getDay()
   var currentMonth = date.getMonth()
@@ -38,6 +32,7 @@ function getTime() {
     'November',
     'December',
   ]
+
   var day = [
     'Sunday',
     'Monday',
@@ -47,6 +42,17 @@ function getTime() {
     'Friday',
     'Saturday',
   ]
+
+  var curDate = day[currentDay] + ", " + month[currentMonth] + " " + currentDate + ", " + currentYear
+
+  return curDate
+}
+
+function getTime() {
+  const date = new Date()
+  var hr = date.getHours()
+  var mn = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
+  var sec = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds()
 
   var time = "--:-- AM"
 
@@ -58,76 +64,56 @@ function getTime() {
     time = (hr < 10 ? '0' : '') + hr + ':' + mn + ":" + sec + " AM"
   }
 
-  var curDate = day[currentDay] + ", " + month[currentMonth] + " " + currentDate + ", " + currentYear
-
-  document.querySelector('#time').innerText = time
-  document.querySelector('#date').innerText = curDate
+  return time
 }
 
+
 function App() {
+  const [time, setTime] = useState(getTime())
+  const [date, setDate] = useState(getDate())
 
   useEffect(() => {
-    setInterval(getTime, 1000)
+    setInterval(() => {
+      setTime(getTime)
+      setDate(getDate)
+    }, 1000)
   }, [])
 
+
   return (
-    <Box mx='7rem' pt='4rem'>
-      <Box>
-        <Heading id='time'>00:00AM</Heading>
-        <Text pb='4' id='date'>Day, Month Day, Year</Text>
-      </Box>
-      <Center>
-        <Grid
-          templateRows="repeat(2, 1fr)"
-          templateColumns="repeat(4, 1fr)"
-          gap={4}
-        >
-          <GridItem rowSpan={2} colSpan={2}>
-            <Button colorScheme='blue' boxSize='15rem' boxShadow='md'>1</Button>
-          </GridItem>
-          <GridItem rowSpan={1} colSpan={1}>
-            <Button boxSize='7rem' boxShadow='md'>2</Button>
-          </GridItem>
-          <GridItem rowSpan={1} colSpan={1}>
-            <Button boxSize='7rem' boxShadow='md'>3</Button>
-          </GridItem>
-          <GridItem rowSpan={1} colSpan={1}>
-            <Button boxSize='7rem' boxShadow='md'>4</Button>
-          </GridItem>
-          <GridItem rowSpan={1} colSpan={1}>
-            <Button boxSize='7rem' boxShadow='md'>5</Button>
-          </GridItem>
-        </Grid>
-        <VStack pl={4} align='stretch' spacing={4}>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
-        </VStack>
-      </Center>
+    <Router>
+      <Switch>
+        {/* <Route path='/' exact component={Home}/>
+        <Route path='/data' component={Data}/>
+        <Route path='/scan' component={Scan}/>
+        <Route path='/sync' component={Sync}/>
+        <Route path='/map' component={Map}/>
+        <Route render={err404}/> */}
+        <Route exact path='/'>
+          <Home time={time} date={date}/>
+        </Route>
 
+        <Route path='/data'>
+          <Data/>
+        </Route>
 
-    </Box>
+        <Route path='/scan'>
+          <Scan time={time}/>
+        </Route>
+
+        <Route path='/map'>
+          <Map time={time}/>
+        </Route>
+
+        <Route exact path='/sync'>
+          <Sync/>
+        </Route>
+
+        <Route render={err404}/>
+      </Switch>
+    </Router>
+
   );
 }
 
 export default App;
-
-/* <Center>
-        <Button colorScheme='blue' boxSize='3xs'>
-          <h1>SCAN</h1>
-        </Button>
-        <Flex>
-          <Box>
-            <Button>1</Button>
-            <Button>2</Button>
-          </Box>
-          <Box>
-            <Button>3</Button>
-            <Button>4</Button>
-          </Box>
-        </Flex>
-
-
-
-      </Center> */
