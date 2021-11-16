@@ -5,12 +5,12 @@ import {
   Spinner,
   Center,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import NavigationBtn from '../components/navigationBtns'
 import { MdOutlineArrowBack, MdOutlineTrackChanges, MdOutlineMap } from 'react-icons/md'
 
-function Scan({ time, date }) {
+function Scan({ time }) {
   const [stream, setStream] = useState(true)
 
   return (

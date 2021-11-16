@@ -7,10 +7,12 @@ import {
   Button,
   Heading,
   Text,
+  Icon,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { MdOutlineTrackChanges, MdOutlineDns, MdOutlineMap, MdSync, MdOutlinePowerSettingsNew, MdGpsFixed, MdSignalWifi4Bar, MdBrightnessAuto, MdBatteryFull } from 'react-icons/md'
 
-function Home({time, date}) {
+function Home({ time, date }) {
 
   return (
     <Box mx='7rem' pt='4rem'>
@@ -26,33 +28,52 @@ function Home({time, date}) {
         >
           <GridItem rowSpan={2} colSpan={2}>
             <Link to='/scan'>
-              <Button colorScheme='blue' boxSize='15rem' boxShadow='md'>Scan</Button>
+              <Button colorScheme='blue' boxSize='15rem' boxShadow='md'>
+                <Icon as={MdOutlineTrackChanges} boxSize={100} />
+              </Button>
             </Link>
           </GridItem>
           <GridItem rowSpan={1} colSpan={1}>
             <Link to='/data'>
-              <Button boxSize='7rem' boxShadow='md'>Data</Button>
+              <Button boxSize='7rem' boxShadow='md'>
+                <Icon as={MdOutlineDns} boxSize={50} />
+              </Button>
             </Link>
           </GridItem>
           <GridItem rowSpan={1} colSpan={1}>
             <Link to='/map'>
-              <Button boxSize='7rem' boxShadow='md'>Map</Button>
+              <Button boxSize='7rem' boxShadow='md'>
+                <Icon as={MdOutlineMap} boxSize={50} />
+              </Button>
             </Link>
           </GridItem>
           <GridItem rowSpan={1} colSpan={1}>
             <Link to='/sync'>
-              <Button boxSize='7rem' boxShadow='md'>Sync</Button>
+              <Button boxSize='7rem' boxShadow='md'>
+                <Icon as={MdSync} boxSize={50} />
+              </Button>
             </Link>
           </GridItem>
           <GridItem rowSpan={1} colSpan={1}>
-            <Button boxSize='7rem' boxShadow='md'>Exit</Button>
+            <Button boxSize='7rem' boxShadow='md'>
+              <Icon as={MdOutlinePowerSettingsNew} boxSize={50} />
+            </Button>
           </GridItem>
         </Grid>
+        
         <VStack pl={4} align='stretch' spacing={4}>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
-          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>1</Center>
+          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>
+            <Icon as={MdGpsFixed} boxSize={25} />
+          </Center>
+          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>
+            <Icon as={MdSignalWifi4Bar} boxSize={25} />
+          </Center>
+          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>
+            <Icon as={MdBrightnessAuto} boxSize={25} />
+          </Center>
+          <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>
+            <Icon as={MdBatteryFull} boxSize={25} />
+          </Center>
         </VStack>
       </Center>
     </Box>

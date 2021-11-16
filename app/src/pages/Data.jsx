@@ -7,7 +7,7 @@ import {
   VStack
 } from '@chakra-ui/react'
 import NavigationBtn from '../components/navigationBtns';
-import { MdOutlineArrowBack, MdOutlineTrackChanges, MdOutlineMap } from 'react-icons/md'
+import { MdOutlineArrowBack, MdOutlineMap } from 'react-icons/md'
 
 function Data() {
   return (
@@ -24,7 +24,7 @@ function Data() {
         />
         <Spacer />
         <VStack w='83vw' h='100vh' p={3} spacing={4}>
-          <Box bgColor='gray.100' borderRadius='full' w='98%' px='2rem' py={2}>
+          <Box bgColor='gray.100' borderRadius='full' w='98%' px='2rem' py={2} boxShadow='md'>
             <Heading size='md'>7°05'14.4"N 121°32'25.9"E</Heading>
             <Text size='sm'>9:14 PM | 29.4℃ | Medium Fish Density</Text>
           </Box>

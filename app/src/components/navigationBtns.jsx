@@ -10,17 +10,17 @@ function NavigationBtn({ firstBtn, scndBtn, thirdBtn, firstIcn, scndIcn, thirdIc
   return (
     <Flex flexDirection='column' h='100%' justifyContent='space-between' alignItems='center'>
       <Link to={firstBtn}>
-        <Button boxSize='6rem'>
+        <Button boxSize='6rem' boxShadow='md'>
           <Icon as={firstIcn} boxSize={10} />
         </Button>
       </Link>
       <Link to={scndBtn}>
-        <Button boxSize='6rem'>
+        <Button boxSize='6rem' boxShadow='md'>
           <Icon as={scndIcn} boxSize={10} />
         </Button>
       </Link>
       <Link to={thirdBtn}>
-        <Button boxSize='6rem'>
+        <Button boxSize='6rem' boxShadow='md'>
           <Icon as={thirdIcn} boxSize={10} />
         </Button>
       </Link>

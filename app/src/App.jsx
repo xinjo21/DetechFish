@@ -1,5 +1,5 @@
 /* import './App.css'; */
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import Home from './pages/Home'
@@ -50,20 +50,22 @@ function getDate() {
 
 function getTime() {
   const date = new Date()
+
   var hr = date.getHours()
   var mn = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes()
   var sec = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds()
-
-  var time = "--:-- AM"
-
-  if (hr > 12) {
-    hr -= 12
+  
+  var time
+  
+  if (hr > 12 || hr === 12) {
+    hr = (hr !== 12 ? (hr - 12) : 12 )
     time = (hr < 10 ? '0' : '') + hr + ':' + mn + ":" + sec + " PM"
-  } else if (hr === 0) {
-    hr = 12
+  } else if (hr === 0 || hr < 12 ) {
+    hr = (hr !== 0 ? hr : 12)
+    time = hr + ':' + mn + ":" + sec + " AM"
+  } /* else {
     time = (hr < 10 ? '0' : '') + hr + ':' + mn + ":" + sec + " AM"
-  }
-
+  } */
   return time
 }
 
@@ -83,12 +85,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        {/* <Route path='/' exact component={Home}/>
-        <Route path='/data' component={Data}/>
-        <Route path='/scan' component={Scan}/>
-        <Route path='/sync' component={Sync}/>
-        <Route path='/map' component={Map}/>
-        <Route render={err404}/> */}
+        
         <Route exact path='/'>
           <Home time={time} date={date}/>
         </Route>
@@ -110,6 +107,13 @@ function App() {
         </Route>
 
         <Route render={err404}/>
+
+        {/* <Route path='/' exact component={Home}/>
+        <Route path='/data' component={Data}/>
+        <Route path='/scan' component={Scan}/>
+        <Route path='/sync' component={Sync}/>
+        <Route path='/map' component={Map}/>
+        <Route render={err404}/> */}
       </Switch>
     </Router>
 
