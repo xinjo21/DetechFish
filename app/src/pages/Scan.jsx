@@ -10,7 +10,7 @@ import { useState } from 'react'
 import NavigationBtn from '../components/navigationBtns'
 import { MdOutlineArrowBack, MdOutlineTrackChanges, MdOutlineMap } from 'react-icons/md'
 
-function Scan({ time }) {
+function Scan({ time, temp }) {
   const [stream, setStream] = useState(true)
 
   return (
@@ -33,7 +33,7 @@ function Scan({ time }) {
         7°05'14.4"N 121°32'25.9"E
       </Text>
       <Text pos='absolute' right='0.75rem' bottom='0.75rem' bgColor='gray.50' borderRadius='full' px='1rem' py='0.25rem' fontSize='md'>
-        {time} | TEMP | DENSITY
+        {time} | {temp} | DENSITY
       </Text>
 
       <Box pos='absolute' top='0' left='0' zIndex='-1'>

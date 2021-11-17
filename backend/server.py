@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 import json
 
 from temperature import read_temp
@@ -11,7 +11,7 @@ def index():
 
 @app.route('/temperature', methods=['GET'])
 def temperature():
-  return json({'temp': read_temp()})
+  return jsonify(temperature=read_temp())
 
 
 

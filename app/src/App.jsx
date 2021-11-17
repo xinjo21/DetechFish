@@ -11,15 +11,18 @@ import err404 from './pages/err404'
 
 // function imports:
 import { getTime, getDate } from './api/date'
+import { getTemp } from './api/temp'
 
 function App() {
   const [time, setTime] = useState(getTime())
   const [date, setDate] = useState(getDate())
+  const [temp, setTemp] = useState(getTemp())
 
   useEffect(() => {
     setInterval(() => {
       setTime(getTime)
       setDate(getDate)
+      setTemp(getTemp)
     }, 1000)
   }, [])
 
@@ -37,7 +40,7 @@ function App() {
         </Route>
 
         <Route path='/scan'>
-          <Scan time={time}/>
+          <Scan time={time} temp={temp}/>
         </Route>
 
         <Route path='/map'>
