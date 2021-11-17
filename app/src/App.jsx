@@ -10,7 +10,7 @@ import Map from './pages/Map'
 import err404 from './pages/err404'
 
 // function imports:
-import { getTime, getDate } from './functions/date'
+import { getTime, getDate } from './api/date'
 
 function App() {
   const [time, setTime] = useState(getTime())
