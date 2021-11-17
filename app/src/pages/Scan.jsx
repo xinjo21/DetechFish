@@ -18,7 +18,7 @@ function Scan({ time }) {
       <Center h='100vh' p='0.75rem'>
         <NavigationBtn
           firstBtn={'/'}
-          scndBtn={'/'}
+          scndBtn={'/scan'}
           thirdBtn={'/map'}
 
           firstIcn={MdOutlineArrowBack}

@@ -20,7 +20,7 @@ function Map({time}) {
       <Center h='100vh' p='0.75rem'>
         <NavigationBtn
           firstBtn={'/'}
-          scndBtn={'/'}
+          scndBtn={'/map'}
           thirdBtn={'/scan'}
 
           firstIcn={MdOutlineArrowBack}
