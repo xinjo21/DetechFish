@@ -29,10 +29,10 @@ npm run build
 
 ## Learn more
 
-### ReactJS [Documentations](https://reactjs.org/docs/getting-started.html)
-### ElectronJS [Documentations](https://www.electronjs.org/docs/latest)
-### MaterialUI [Documentations](https://mui.com/getting-started/usage/)
-### Firebase [Documentations](https://firebase.google.com/docs)
+### [ReactJS](https://reactjs.org/docs/getting-started.html)
+### [ElectronJS](https://www.electronjs.org/docs/latest)
+### [ChakraUI](https://chakra-ui.com/docs/getting-started)
+### [Firebase](https://firebase.google.com/docs)
 
 
 
