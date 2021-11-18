@@ -1,9 +1,10 @@
-export async function getTemp(){
+import axios from 'axios'
+
+export async function getTemp() {
   try {
-    let resp = await fetch('http://localhost:5000/temperature')
-    let respJson = await resp.json()
-    return respJson
-  } catch (error) {
-    console.log(error)
+    const res = await axios.get('http://192.168.254.116:5000/temperature')
+    return (JSON.stringify(res.data.temperature))
+  } catch (err) {
+    console.log(err)
   }
 }

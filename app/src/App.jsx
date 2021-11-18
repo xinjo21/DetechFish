@@ -1,6 +1,7 @@
 /* import './App.css'; */
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 import Home from './pages/Home'
 import Data from './pages/Data'
@@ -16,14 +17,19 @@ import { getTemp } from './api/temp'
 function App() {
   const [time, setTime] = useState(getTime())
   const [date, setDate] = useState(getDate())
-  const [temp, setTemp] = useState(getTemp())
+  const [temp, setTemp] = useState()
 
   useEffect(() => {
+
     setInterval(() => {
       setTime(getTime)
       setDate(getDate)
-      setTemp(getTemp)
+      getTemp()
     }, 1000)
+    
+    
+    
+
   }, [])
 
 
