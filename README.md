@@ -5,6 +5,11 @@ _The project uses ReactJS and ElectronJS_
 
 ---
 
+## Prerequsite
+```
+pip install flask flask-cors
+```
+
 ## Installation
 Uses the package manager NPM
 ```
@@ -14,10 +19,20 @@ npm install
 ### Running development
 It would first start the react server, the the react server is done serving it would start the Electron
 
-The server will run on http://localhost:3000
 ```
+cd app
 npm run dev
 ```
+The server will run on http://localhost:3000
+
+### Running Server
+For connection between RaspberryPi's module to the application
+
+```
+cd backend
+python server.py
+```
+The API server will run on http://localhost:5000
 
 ### Building
 It would build the React first and after that it will build the Electron
@@ -29,10 +44,17 @@ npm run build
 
 ## Learn more
 
-### ReactJS [Documentations](https://reactjs.org/docs/getting-started.html)
-### ElectronJS [Documentations](https://www.electronjs.org/docs/latest)
-### MaterialUI [Documentations](https://mui.com/getting-started/usage/)
-### Firebase [Documentations](https://firebase.google.com/docs)
+### [ReactJS](https://reactjs.org/docs/getting-started.html)
+### [ElectronJS](https://www.electronjs.org/docs/latest)
+### [ChakraUI](https://chakra-ui.com/docs/getting-started)
+### [Firebase](https://firebase.google.com/docs)
+
+<!-- 
+  Install python opencv
+
+-->
+
+
 
 
 

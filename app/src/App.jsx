@@ -12,23 +12,29 @@ import err404 from './pages/err404'
 
 // function imports:
 import { getTime, getDate } from './api/date'
-import { getTemp } from './api/temp'
 
 function App() {
   const [time, setTime] = useState(getTime())
   const [date, setDate] = useState(getDate())
   const [temp, setTemp] = useState()
+  const [video, setVideo] = useState()
 
   useEffect(() => {
+    async function getTemp(){
+      try {
+        const res = await axios.get('http://192.168.254.116:5000/temperature')
+          setTemp(JSON.stringify(res.data.temperature))
+          console.log(temp)
+      } catch (err) {
+        console.log(err)
+      }
+    }
 
     setInterval(() => {
       setTime(getTime)
       setDate(getDate)
       getTemp()
     }, 1000)
-    
-    
-    
 
   }, [])
 

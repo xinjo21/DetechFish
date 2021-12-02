@@ -37,12 +37,9 @@ function Scan({ time, temp }) {
       </Text>
 
       <Box pos='absolute' top='0' left='0' zIndex='-1'>
-        {stream ?
-          <Center bgColor='gray.800' h='100vh' w='100vw'>
-            <Spinner size='lg' emptyColor='gray.500' />
-          </Center>
-          :
-          <Box bgColor='gray.800' h='100vh' w='100vw'></Box>}
+        <Box bgColor='gray.800' h='100vh' w='100vw'>
+          <img src='http://192.168.254.109:2204/video_feed' alt='hello' /> {/* ADJUST VIDEO FRAME */}
+        </Box>
       </Box>
     </Box>
 
@@ -50,3 +47,14 @@ function Scan({ time, temp }) {
 }
 
 export default Scan;
+
+
+/* {stream ?
+  <Center bgColor='gray.800' h='100vh' w='100vw'>
+    <Spinner size='lg' emptyColor='gray.500' />
+  </Center>
+  :
+  <Box bgColor='gray.800' h='100vh' w='100vw'>
+    <img src='http://192.168.254.109:2204/video_feed' alt='hello'/>
+  </Box>
+  } */
