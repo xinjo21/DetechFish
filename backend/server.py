@@ -1,15 +1,18 @@
-from flask import Flask, jsonify
-from flask.wrappers import Response  #pip install flask
-from flask_cors import CORS       #pip install -U flask-cors
-import cv2                        #apt-get opencv-python? CONFIRM
+""" 
+pip install flaks
+pip install -U flask-cors
+sudo apt install python3-opencv
+"""
+
+from flask import Flask, jsonify, Response
+from flask_cors import CORS      
+import cv2
 
 # IMPORT MODULES
 from temperature import read_temp # temperature module
 
 app = Flask(__name__)
 CORS(app)
-
-video = cv2.VideoCapture(0)
 
 @app.route('/')
 def index():
@@ -19,24 +22,24 @@ def index():
 def temperature():
   return jsonify(temperature=read_temp())
 
+
+video = cv2.VideoCapture(0)
+
 def gen(video):
   while True:
-    success, iamge = video.read()
+    success, image = video.read()
     ret, jpeg = cv2.imencode('.jpg', image)
     frame = jpeg.tobytes()
     yield (b'--frame\r\n'
-           b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-
-@app.route('/video', method=['GET'])
+            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+            
+@app.route('/video_feed')
 def video_feed():
   global video
-  return Response(gen(video), mimetype='multipart/x-mixed-replace; boundary=frame')
+  return Response(gen(video),
+                  mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-  app.run(debug=True, host='0.0.0.0', threaded=True)
+  app.run(host='0.0.0.0', threaded=True)
 
-
-
-""" @app.route('/loc', methods=['GET', 'POST'])
-def something():
-  return 'something' """
+video.release()
