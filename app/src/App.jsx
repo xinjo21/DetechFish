@@ -14,17 +14,18 @@ import err404 from './pages/err404'
 import { getTime, getDate } from './api/date'
 
 function App() {
+  const link = 'http://192.168.254.112:5000/'
+
   const [time, setTime] = useState(getTime())
   const [date, setDate] = useState(getDate())
   const [temp, setTemp] = useState()
-  const [video, setVideo] = useState()
+  const stream = link + 'video_feed'
 
   useEffect(() => {
     async function getTemp(){
       try {
-        const res = await axios.get('http://192.168.254.116:5000/temperature')
+        const res = await axios.get(link +'temperature')
           setTemp(JSON.stringify(res.data.temperature))
-          console.log(temp)
       } catch (err) {
         console.log(err)
       }
@@ -34,9 +35,8 @@ function App() {
       setTime(getTime)
       setDate(getDate)
       getTemp()
-    }, 1000)
-
-  }, [])
+    }, 1500)
+  })
 
 
   return (
@@ -44,7 +44,7 @@ function App() {
       <Switch>
         
         <Route exact path='/'>
-          <Home time={time} date={date}/>
+          <Home time={time} date={date} link={link}/>
         </Route>
 
         <Route path='/data'>
@@ -52,7 +52,7 @@ function App() {
         </Route>
 
         <Route path='/scan'>
-          <Scan time={time} temp={temp}/>
+          <Scan time={time} temp={temp} stream={stream}/>
         </Route>
 
         <Route path='/map'>

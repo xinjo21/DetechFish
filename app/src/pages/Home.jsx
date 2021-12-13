@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react'
 import {
   Box,
   Center,
@@ -8,11 +9,21 @@ import {
   Heading,
   Text,
   Icon,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { MdOutlineTrackChanges, MdOutlineDns, MdOutlineMap, MdSync, MdOutlinePowerSettingsNew, MdGpsFixed, MdSignalWifi4Bar, MdBrightnessAuto, MdBatteryFull } from 'react-icons/md'
+import axios from 'axios'
 
-function Home({ time, date }) {
+function Home({ time, date, link }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const onClose = () => setIsOpen(false)
+  const cancelRef = useRef()
 
   return (
     <Box mx='7rem' pt='4rem'>
@@ -54,13 +65,37 @@ function Home({ time, date }) {
               </Button>
             </Link>
           </GridItem>
+
           <GridItem rowSpan={1} colSpan={1}>
-            <Button boxSize='7rem' boxShadow='md'>
+            <Button boxSize='7rem' boxShadow='md' onClick={() => setIsOpen(true)}>
               <Icon as={MdOutlinePowerSettingsNew} boxSize={50} />
             </Button>
           </GridItem>
+          <AlertDialog
+            isOpen={isOpen}
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}
+          >
+            <AlertDialogOverlay>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  Shutdown Device
+                </AlertDialogHeader>
+                <AlertDialogBody>
+                  Are you sure to shutdown the device?
+                </AlertDialogBody>
+                <AlertDialogFooter>
+                  <Button ref={cancelRef} onClick={onClose}>Cancel</Button>
+                  <Button colorScheme='red' onClick={() => {
+                    onClose()
+                    axios.get(link + 'shutdown')
+                  }} ml={3}>Shutdown</Button>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialogOverlay>
+          </AlertDialog>
         </Grid>
-        
+
         <VStack pl={4} align='stretch' spacing={4}>
           <Center boxSize='3rem' bgColor='gray.700' borderRadius='0.5rem' color='white'>
             <Icon as={MdGpsFixed} boxSize={25} />

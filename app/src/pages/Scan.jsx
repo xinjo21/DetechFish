@@ -4,14 +4,13 @@ import {
   Text,
   Spinner,
   Center,
+  Image,
 } from '@chakra-ui/react'
-import { useState } from 'react'
 
 import NavigationBtn from '../components/navigationBtns'
 import { MdOutlineArrowBack, MdOutlineTrackChanges, MdOutlineMap } from 'react-icons/md'
 
-function Scan({ time, temp }) {
-  const [stream, setStream] = useState(true)
+function Scan({ time, temp, stream }) {
 
   return (
     <Box>
@@ -37,8 +36,12 @@ function Scan({ time, temp }) {
       </Text>
 
       <Box pos='absolute' top='0' left='0' zIndex='-1'>
-        <Box bgColor='gray.800' h='100vh' w='100vw'>
-          <img src='http://192.168.254.109:2204/video_feed' alt='hello' /> {/* ADJUST VIDEO FRAME */}
+        <Box w='100vw'>
+          <Image src={stream} alt='fish stream' w='100vw' h='100vh' fit='cover' loading='lazy' fallback={
+            <Center bgColor='gray.800' h='100vh' w='100vw'>
+              <Spinner size='lg' emptyColor='gray.500' />
+            </Center>
+          } />
         </Box>
       </Box>
     </Box>

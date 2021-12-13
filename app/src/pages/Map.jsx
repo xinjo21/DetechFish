@@ -5,16 +5,13 @@ import {
   Center,
   Spinner,
 } from '@chakra-ui/react'
-import { useState } from 'react'
-
 
 import NavigationBtn from '../components/navigationBtns';
 import { MdOutlineArrowBack, MdOutlineBlurCircular, MdOutlineTrackChanges } from 'react-icons/md'
 
 
-function Map({time}) {
-  const [stream, setStream] = useState(true)
-  
+function Map({ time }) {
+
   return (
     <Box>
       <Center h='100vh' p='0.75rem'>
@@ -36,12 +33,9 @@ function Map({time}) {
         {time} | TEMP | DENSITY
       </Text>
       <Box pos='absolute' top='0' left='0' zIndex='-1'>
-        {stream ?
-          <Center bgColor='gray.800' h='100vh' w='100vw'>
-            <Spinner size='lg' emptyColor='gray.500' />
-          </Center>
-          :
-          <Box bgColor='gray.800' h='100vh' w='100vw'></Box>}
+        <Center bgColor='gray.800' h='100vh' w='100vw'>
+          <Spinner size='lg' emptyColor='gray.500' />
+        </Center>
       </Box>
     </Box>
   )
