@@ -33,7 +33,7 @@ function Scan({ time, temp, stream, density }) {
         7°05'14.4"N 121°32'25.9"E
       </Text>
       <Text pos='absolute' right='0.75rem' bottom='0.75rem' bgColor='gray.50' borderRadius='full' px='1rem' py='0.25rem' fontSize='md'>
-        {time} | Temperature = {temp} | Fish Count = {density}
+        {time} | {temp}°C | Fish Count: {density}
       </Text>
 
       <Box pos='absolute' top='0' left='0' zIndex='-1'>

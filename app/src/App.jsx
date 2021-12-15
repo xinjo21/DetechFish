@@ -46,7 +46,7 @@ function App() {
       setDate(getDate)
       getTemp()
       getDensity()
-    }, 1500)
+    }, 5000)
   })
 
 
