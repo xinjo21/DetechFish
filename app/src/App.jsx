@@ -14,11 +14,12 @@ import err404 from './pages/err404'
 import { getTime, getDate } from './api/date'
 
 function App() {
-  const link = 'http://192.168.254.112:5000/'
+  const link = 'http://192.168.254.119:5000/'
 
   const [time, setTime] = useState(getTime())
   const [date, setDate] = useState(getDate())
   const [temp, setTemp] = useState()
+  const [density, setDensity] = useState()
   const stream = link + 'video_feed'
 
   useEffect(() => {
@@ -31,10 +32,20 @@ function App() {
       }
     }
 
+    async function getDensity(){
+      try {
+        const res = await axios.get(link +'fish_count')
+          setDensity(JSON.stringify(res.data.fishcount))
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
     setInterval(() => {
       setTime(getTime)
       setDate(getDate)
       getTemp()
+      getDensity()
     }, 1500)
   })
 
@@ -52,7 +63,7 @@ function App() {
         </Route>
 
         <Route path='/scan'>
-          <Scan time={time} temp={temp} stream={stream}/>
+          <Scan time={time} temp={temp} stream={stream} density={density}/>
         </Route>
 
         <Route path='/map'>
